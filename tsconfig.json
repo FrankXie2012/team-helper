@@ -1,29 +1,24 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "esnext",
     "module": "esnext",
-    "removeComments": false,
-    "preserveConstEnums": true,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "noImplicitAny": false,
-    "allowSyntheticDefaultImports": true,
-    "outDir": "lib",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "strictNullChecks": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "rootDir": ".",
+    "useDefineForClassFields": true,
+    "strict": true,
     "jsx": "preserve",
-    "allowJs": true,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
     "resolveJsonModule": true,
-    "typeRoots": ["node_modules/@types", "global.d.ts"],
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "noUnusedLocals": false,
+    "baseUrl": ".",
+    "paths": { "~/*": ["./src/*"] },
+    "lib": ["esnext", "dom"],
+    "types": ["@dcloudio/types", "node"]
   },
-  "include": ["src/**/*", "types/*"],
-  "exclude": ["node_modules", "dist"],
-  "compileOnSave": false
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

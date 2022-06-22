@@ -1,9 +1,0 @@
-{
-  "miniprogramRoot": "./",
-  "projectname": "team-helper",
-  "appid": "wxa088dfa5f82bfb42",
-  "setting": {
-    "es6": false,
-    "minified": false
-  }
-}
