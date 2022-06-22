@@ -8,7 +8,11 @@
 
 <script setup lang="ts">
 import Taro from '@tarojs/taro'
-const tabSwitch = (tab) => {
+interface IObj<T = unknown> {
+  [key: string]: T
+  [key: number]: T
+}
+const tabSwitch = (tab: IObj) => {
   switch (tab.tabTitle) {
     case '首页':
       Taro.navigateTo({ url: '/pages/index/index' })
