@@ -221,36 +221,36 @@ yarn add axios qs
 
   1.安装依赖
 
-```shell
-yarn add husky -D
-```
+  ```shell
+  yarn add husky -D
+  ```
 
-2.初始化 husky
+  2.初始化 husky
 
-```shell
-npx husky install
-```
+  ```shell
+  npx husky install
+  ```
 
-3.添加 pre-commit 命令 (测试)
+  3.添加 pre-commit 命令 (测试)
 
-```
-npx husky add .husky/pre-commit "echo test"
-```
+  ```
+  npx husky add .husky/pre-commit "echo test"
+  ```
 
-4.修改文件 .husky/pre-commit
+  4.修改文件 .husky/pre-commit
 
-```shell
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+  ```shell
+  #!/usr/bin/env sh
+  . "$(dirname -- "$0")/_/husky.sh"
 
-echo "---eslint start---"
-npm run lint
-echo "---eslint end---"
+  echo "---eslint start---"
+  npm run lint
+  echo "---eslint end---"
 
-echo "---ts lint start---"
-npm run tsc
-echo "---ts lint end---"
-```
+  echo "---ts lint start---"
+  npm run tsc
+  echo "---ts lint end---"
+  ```
 
 - 使用 commitlint 控制提交说明
 
