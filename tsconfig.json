@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "module": "commonjs",
+    "module": "esnext",
     "removeComments": false,
     "preserveConstEnums": true,
     "moduleResolution": "node",
@@ -18,10 +18,12 @@
     "jsx": "preserve",
     "allowJs": true,
     "resolveJsonModule": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ]
+    "typeRoots": ["node_modules/@types", "global.d.ts"],
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["./src", "global.d.ts"],
+  "include": ["src/**/*", "types/*"],
+  "exclude": ["node_modules", "dist"],
   "compileOnSave": false
 }
