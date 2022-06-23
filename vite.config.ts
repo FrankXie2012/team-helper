@@ -7,13 +7,12 @@ import eslintPlugin from 'vite-plugin-eslint'
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd())
-  console.log(command, mode, env)
 
   let config: UserConfig = {
-    resolve: { alias: { '~': path.resolve(__dirname, './src') } },
+    resolve: { alias: { '@': path.resolve(__dirname, './src') } },
     css: {
       preprocessorOptions: {
-        scss: { charset: false, additionalData: `@import "~/styles/var.scss";` },
+        scss: { charset: false, additionalData: `@import "@/style/var.scss";` },
       },
     },
 

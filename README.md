@@ -157,7 +157,7 @@ module.exports = {
 1.安装依赖
 
 ```shell
-yarn add -D node-sass sass-loader
+yarn add -D sass node-sass sass-loader
 ```
 
 2.配置全局公共变量并导入
@@ -201,6 +201,82 @@ export default defineConfig(({ command, mode }) => {
     return config
   }
 })
+```
+
+## 使用 pinia
+
+1.安装依赖
+
+```shell
+yarn add pinia pinia-plugin-persistedstate
+```
+
+2.创建 store/useStore.ts 文件
+
+```ts
+import { defineStore, createPinia } from 'pinia'
+import { createPersistedState } from 'pinia-plugin-persistedstate'
+import { User } from '../types/user'
+
+type StateType = {
+  user?: User
+}
+export default defineStore('global', {
+  persist: {
+    key: 'pinia',
+    paths: ['user'],
+  },
+  state: (): StateType => ({
+    user: undefined,
+  }),
+  actions: {
+    setData<T extends keyof StateType>({ key, value }: { key: T; value: any }) {
+      this[key] = value
+    },
+  },
+})
+
+export const pinia = createPinia().use(
+  createPersistedState({
+    storage: {
+      getItem(key: string): string | null {
+        return uni.getStorageSync(key)
+      },
+      setItem(key: string, value: string) {
+        uni.setStorageSync(key, value)
+      },
+    },
+  })
+)
+```
+
+3.在 main.ts 中引入
+
+```ts
+import { createSSRApp } from 'vue'
+import App from './App.vue'
+import { pinia } from './store/useStore'
+
+export function createApp() {
+  const app = createSSRApp(App)
+  app.use(pinia)
+  return {
+    app,
+  }
+}
+```
+
+4.代码中使用
+
+```ts
+import useStore from '@/store/useStore'
+const store = useStore()
+
+// 取值
+console.log(store.user)
+
+// 赋值
+store.setData({ key: 'user', value: { id: 0, name: 'oil ' } })
 ```
 
 ## 使用 axios
@@ -271,3 +347,40 @@ yarn add axios qs
   ```shell
   npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
   ```
+
+## 使用 uni-ui
+
+由于试了一圈，发现 uview 不支持 vue3；vant 虽然支持 vue3，但是无法编译问题很多；firstUI 吃相太难看；于是决定还是使用官方的 uni-ui
+
+1.安装依赖
+
+```shell
+yarn add @dcloudio/uni-ui
+```
+
+2.新建文件 vue.config.js
+
+```js
+module.exports = {
+  transpileDependencies: ['@dcloudio/uni-ui'],
+}
+```
+
+3.在 pages.json 文件中配置
+
+```json
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      // uni-ui 规则如下配置
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
+  },
+
+  // 其他内容
+  "pages": [
+    // ...
+  ]
+}
+```
