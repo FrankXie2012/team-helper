@@ -11,8 +11,46 @@
       "style": {
         "navigationBarTitleText": "首页"
       }
+    },
+    {
+      "path": "pages/match/index",
+      "style": {
+        "navigationBarTitleText": "比赛"
+      }
+    },
+    {
+      "path": "pages/admin/index",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
     }
   ],
+  "tabBar": {
+    "color": "#cdcdcd",
+    "selectedColor": "#1296db",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/home.png",
+        "selectedIconPath": "static/home_active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/match/index",
+        "iconPath": "static/match.png",
+        "selectedIconPath": "static/match_active.png",
+        "text": "比赛"
+      },
+      {
+        "pagePath": "pages/admin/index",
+        "iconPath": "static/admin.png",
+        "selectedIconPath": "static/admin_active.png",
+        "text": "我的"
+      }
+    ]
+  },
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "球队助手",
