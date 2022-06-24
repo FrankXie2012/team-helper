@@ -16,7 +16,7 @@
     "resolveJsonModule": true,
     "noUnusedLocals": false,
     "baseUrl": ".",
-    "paths": { "~/*": ["./src/*"] },
+    "paths": { "@/*": ["./src/*"] },
     "lib": ["esnext", "dom"],
     "types": ["@dcloudio/types", "node"]
   },

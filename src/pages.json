@@ -23,6 +23,24 @@
       "style": {
         "navigationBarTitleText": "我的"
       }
+    },
+    {
+      "path": "pages/matchList/index",
+      "style": {
+        "navigationBarTitleText": "赛程赛况"
+      }
+    },
+    {
+      "path": "pages/futureWeather/index",
+      "style": {
+        "navigationBarTitleText": "未来天气"
+      }
+    },
+    {
+      "path": "pages/stadiumSum/index",
+      "style": {
+        "navigationBarTitleText": "球场汇总"
+      }
     }
   ],
   "tabBar": {

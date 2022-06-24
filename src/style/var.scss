@@ -113,8 +113,17 @@
 .c-white {
   color: #fff !important;
 }
+.c-blue {
+  color: $uni-color-primary;
+}
 .c-red {
-  color: #db3b21;
+  color: $uni-color-error;
+}
+.c-yellow {
+  color: $uni-color-warning;
+}
+.c-green {
+  color: $uni-color-success;
 }
 .c-light-gray {
   color: #999;
@@ -200,4 +209,17 @@
 .break-all {
   word-wrap: break-word;
   word-break: break-all;
+}
+.middle {
+  vertical-align: middle;
+}
+
+// 公用组件样式
+.total-title {
+  color: $uni-color-primary;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 10px 10px 0;
+  margin: 20px;
+  border-bottom: 3px solid $uni-color-primary;
 }
