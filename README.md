@@ -279,16 +279,6 @@ console.log(store.user)
 store.setData({ key: 'user', value: { id: 0, name: 'oil ' } })
 ```
 
-## 使用 axios
-
-1.安装依赖
-
-```
-yarn add axios qs
-```
-
-2.新建文件 src/api/request.ts
-
 > 具体查看项目代码
 
 ## 使用 husky, commitlint

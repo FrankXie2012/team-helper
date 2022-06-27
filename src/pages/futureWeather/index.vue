@@ -4,24 +4,21 @@
       <uni-icons type="circle-filled" size="20" color="#1296db"></uni-icons>
       我的位置
     </div>
-    <uni-card title="当前位置" :extra="weather.city">
+    <uni-card class="total-card" title="当前位置" :extra="weather.city">
       {{ currentGeo.formatted_address }}
     </uni-card>
     <div class="total-title">
       <uni-icons type="circle-filled" size="20" color="#1296db"></uni-icons>
       天气预报
     </div>
-    <uni-card
-      v-for="(item, i) in weather.casts"
-      :key="i"
-      :title="item.date"
-      :extra="`数据时间: ${weather.reporttime}`"
-      mode="style"
-      is-shadow
-      :cover="getCover(item.dayweather)"
-    >
-      <uni-row class="demo-uni-row">
-        <uni-col :span="24">气温范围: {{ item.nighttemp }} ~ {{ item.daytemp }}</uni-col>
+    <uni-card v-for="(item, i) in weather.casts" :key="i" mode="style" is-shadow :class="getCover(item.dayweather)">
+      <div class="flex-between mb-10">
+        <uni-tag :text="item.date" type="primary"></uni-tag>
+        <view>更新日期: {{ weather.reporttime }}</view>
+      </div>
+      <uni-row>
+        <uni-col :span="12">最高气温: {{ item.daytemp }}</uni-col>
+        <uni-col :span="12">最低气温: {{ item.nighttemp }}</uni-col>
         <uni-col :span="12">白天天气: {{ item.dayweather }}</uni-col>
         <uni-col :span="12">晚上天气: {{ item.nightweather }}</uni-col>
         <uni-col :span="12">白天风向: {{ item.daywind }}</uni-col>
@@ -45,10 +42,10 @@ onMounted(async () => {
 
 const getCover = (type: string) => {
   const covers = {
-    晴: 'https://images.pexels.com/photos/72473/pexels-photo-72473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    多云: 'https://images.pexels.com/photos/733832/pexels-photo-733832.jpeg?auto=compress&cs=tinysrgb&w=600',
-    阴: 'https://images.pexels.com/photos/391522/pexels-photo-391522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    雨: 'https://images.pexels.com/photos/125510/pexels-photo-125510.jpeg?auto=compress&cs=tinysrgb&w=600',
+    晴: 'sunny-card',
+    多云: 'cloudy-card',
+    阴: 'moody-card',
+    雨: 'rainy-card',
   }
   return covers[type]
 }
@@ -85,4 +82,33 @@ const getWeather = async (code) => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.sunny-card {
+  :deep(.uni-card) {
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+      url('https://images.pexels.com/photos/72473/pexels-photo-72473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: 100% 100%;
+  }
+}
+.cloudy-card {
+  :deep(.uni-card) {
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+      url('https://images.pexels.com/photos/733832/pexels-photo-733832.jpeg?auto=compress&cs=tinysrgb&w=600');
+    background-size: 100% 100%;
+  }
+}
+.moody-card {
+  :deep(.uni-card) {
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+      url('https://images.pexels.com/photos/391522/pexels-photo-391522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: 100% 100%;
+  }
+}
+.rainy-card {
+  :deep(.uni-card) {
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+      url('https://images.pexels.com/photos/125510/pexels-photo-125510.jpeg?auto=compress&cs=tinysrgb&w=600');
+    background-size: 100% 100%;
+  }
+}
+</style>

@@ -25,9 +25,21 @@
       }
     },
     {
+      "path": "pages/joinPost/index",
+      "style": {
+        "navigationBarTitleText": "参与接龙"
+      }
+    },
+    {
       "path": "pages/matchList/index",
       "style": {
         "navigationBarTitleText": "赛程赛况"
+      }
+    },
+    {
+      "path": "pages/soccerCalendar/index",
+      "style": {
+        "navigationBarTitleText": "足球日历"
       }
     },
     {

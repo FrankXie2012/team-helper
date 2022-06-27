@@ -1,9 +1,5 @@
 <template>
   <view class="content">
-    <div class="total-title">
-      <uni-icons type="circle-filled" size="20" color="#1296db"></uni-icons>
-      主要功能
-    </div>
     <uni-grid :column="3" :show-border="false" square>
       <uni-grid-item>
         <div class="grid-box" @click="onClickGrid('joinPost')">
