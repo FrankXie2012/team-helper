@@ -216,12 +216,12 @@
 
 // 公用组件样式
 .total-title {
-  color: $uni-color-primary;
+  color: $base-color;
   font-size: 20px;
   font-weight: bold;
   padding: 10px 10px 10px 0;
   margin: 20px;
-  border-bottom: 3px solid $uni-color-primary;
+  border-bottom: 3px solid $base-color;
 }
 .total-card {
   .uni-card {

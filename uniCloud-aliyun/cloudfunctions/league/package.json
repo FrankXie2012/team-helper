@@ -1,0 +1,7 @@
+{
+  "name": "league",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

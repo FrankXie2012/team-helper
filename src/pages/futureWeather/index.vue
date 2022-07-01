@@ -1,14 +1,14 @@
 <template>
   <view class="content">
     <div class="total-title">
-      <uni-icons type="circle-filled" size="20" color="#1296db"></uni-icons>
+      <uni-icons type="circle-filled" size="20" color="#2979ff"></uni-icons>
       我的位置
     </div>
     <uni-card class="total-card" title="当前位置" :extra="weather.city">
       {{ currentGeo.formatted_address }}
     </uni-card>
     <div class="total-title">
-      <uni-icons type="circle-filled" size="20" color="#1296db"></uni-icons>
+      <uni-icons type="circle-filled" size="20" color="#2979ff"></uni-icons>
       天气预报
     </div>
     <uni-card v-for="(item, i) in weather.casts" :key="i" mode="style" is-shadow :class="getCover(item.dayweather)">
@@ -45,7 +45,8 @@ const getCover = (type: string) => {
     晴: 'sunny-card',
     多云: 'cloudy-card',
     阴: 'moody-card',
-    雨: 'rainy-card',
+    小雨: 'rainy-card',
+    大雨: 'rainy-card',
   }
   return covers[type]
 }

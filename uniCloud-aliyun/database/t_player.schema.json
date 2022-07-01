@@ -1,0 +1,80 @@
+{
+  "bsonType": "object",
+  "required": ["playerName"],
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "playerName": {
+      "title": "球员姓名",
+      "bsonType": "string",
+      "maxLength": 20
+    },
+    "playerAvatar": {
+      "title": "球员头像",
+      "bsonType": "file",
+      "fileMediaType": "image"
+    },
+    "playerNickname": {
+      "title": "球员外号",
+      "bsonType": "string",
+      "maxLength": 20
+    },
+    "playerGender": {
+      "title": "球员性别",
+      "bsonType": "string",
+      "enum": [
+        { "text": "男", "value": "male" },
+        { "text": "女", "value": "female" }
+      ]
+    },
+    "playerPhone": {
+      "title": "手机号",
+      "bsonType": "string",
+      "maxLength": 11
+    },
+    "playerAddr": {
+      "title": "住址",
+      "bsonType": "string",
+      "maxLength": 50
+    },
+    "playerNumber": {
+      "title": "球衣号码",
+      "bsonType": "number",
+      "minimum": 0,
+      "maximum": 99
+    },
+    "playerFoot": {
+      "title": "惯用脚",
+      "bsonType": "string",
+      "enum": [
+        { "text": "左脚", "value": "left" },
+        { "text": "右脚", "value": "right" }
+      ]
+    },
+    "playerPosition": {
+      "title": "场上位置",
+      "bsonType": "string",
+      "description": "最多选择三项",
+      "enum": [
+        { "text": "门将", "value": "GK" },
+        { "text": "左边后卫", "value": "LB" },
+        { "text": "右边后卫", "value": "RB" },
+        { "text": "中后卫", "value": "CB" },
+        { "text": "后腰", "value": "CDM" },
+        { "text": "组织型中场", "value": "CM" },
+        { "text": "前腰", "value": "CAM" },
+        { "text": "左边前", "value": "LM" },
+        { "text": "右边前", "value": "RM" },
+        { "text": "中锋", "value": "CF" },
+        { "text": "影锋", "value": "SS" },
+        { "text": "左边锋", "value": "LWF" },
+        { "text": "右边锋", "value": "RWF" }
+      ]
+    },
+    "wxOpenId": {
+      "title": "微信OpenID",
+      "bsonType": "string"
+    }
+  }
+}

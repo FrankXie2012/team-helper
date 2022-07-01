@@ -50,7 +50,7 @@
     <div class="flex-around mt-20">
       <uni-fav
         class="join-fav"
-        bg-color-checked="#1296db"
+        bg-color-checked="#2979ff"
         :checked="joinCheck"
         :content-text="{ contentDefault: '参加', contentFav: '已参加' }"
         @click="checkJoin"

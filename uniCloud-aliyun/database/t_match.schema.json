@@ -1,0 +1,52 @@
+{
+  "bsonType": "object",
+  "required": ["matchTime", "matchLeague", "matchStadium", "matchTeams"],
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "matchTime": {
+      "title": "比赛时间",
+      "bsonType": "string",
+      "maxLength": 20
+    },
+    "matchLeague": {
+      "title": "所属联赛",
+      "foreignKey": "t_league._id",
+      "enum": {
+        "collection": "t_league",
+        "field": "leagueName as text, _id as value"
+      }
+    },
+    "matchStadium": {
+      "title": "比赛场地",
+      "foreignKey": "t_stadium._id",
+      "enum": {
+        "collection": "t_stadium",
+        "field": "stadiumName as text, _id as value"
+      }
+    },
+    "matchTeams": {
+      "title": "比赛球队",
+      "description": "包括球衣，参赛球员",
+      "bsonType": "array",
+      "arrayType": "object",
+      "maxLength": 2
+    },
+    "matchResult": {
+      "title": "比赛比分",
+      "bsonType": "string",
+      "maxLength": 10
+    },
+    "matchLive": {
+      "title": "直播链接",
+      "bsonType": "string",
+      "maxLength": 50
+    },
+    "matchPhotoUrl": {
+      "title": "网盘地址",
+      "bsonType": "string",
+      "maxLength": 50
+    }
+  }
+}

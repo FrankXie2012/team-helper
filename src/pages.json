@@ -37,6 +37,12 @@
       }
     },
     {
+      "path": "pages/matchList/leagueForm",
+      "style": {
+        "navigationBarTitleText": "编辑联赛"
+      }
+    },
+    {
       "path": "pages/soccerCalendar/index",
       "style": {
         "navigationBarTitleText": "足球日历"
@@ -57,7 +63,7 @@
   ],
   "tabBar": {
     "color": "#cdcdcd",
-    "selectedColor": "#1296db",
+    "selectedColor": "#2979ff",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [

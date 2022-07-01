@@ -10,4 +10,7 @@ export default {
   dbUser: 'root',
   dbPwd: 'w3Smd7vS',
   dbDomain: 'https://koa-2qrw-2018565-1257841605.ap-shanghai.run.tcloudbase.com',
+
+  // Uni-app ID
+  uniAppId: '__UNI__A7E5CF2',
 }

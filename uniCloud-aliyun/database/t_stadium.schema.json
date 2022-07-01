@@ -1,0 +1,32 @@
+{
+  "bsonType": "object",
+  "required": ["stadiumName", "stadiumGeo"],
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "stadiumName": {
+      "title": "球场名称",
+      "bsonType": "string",
+      "maxLength": 20
+    },
+    "stadiumPic": {
+      "title": "球场图片",
+      "bsonType": "file",
+      "fileMediaType": "image"
+    },
+    "stadiumGeo": {
+      "title": "球场位置",
+      "bsonType": "string",
+      "maxLength": 20
+    },
+    "stadiumGrass": {
+      "title": "球场草皮",
+      "bsonType": "string",
+      "enum": [
+        { "text": "人工草", "value": "artificial" },
+        { "text": "天然草", "value": "natural" }
+      ]
+    }
+  }
+}

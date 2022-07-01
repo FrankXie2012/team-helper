@@ -1,7 +1,7 @@
 <template>
   <view class="content">
     <div class="total-title">
-      <uni-icons type="circle-filled" size="20" color="#1296db"></uni-icons>
+      <uni-icons type="circle-filled" size="20" color="#2979ff"></uni-icons>
       球场汇总
     </div>
     <uni-card class="stadium-card" title="省体育中心" extra="十一人制" mode="style" is-shadow>

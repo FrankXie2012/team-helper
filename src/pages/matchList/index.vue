@@ -1,21 +1,39 @@
 <template>
   <view class="content">
-    <div class="total-title">
-      <uni-icons type="circle-filled" size="20" color="#1296db"></uni-icons>
-      选择联赛
+    <div class="total-title flex-between">
+      <div>
+        <uni-icons type="circle-filled" size="20" color="#2979ff"></uni-icons>
+        选择联赛
+      </div>
+      <uni-tag type="primary" text="新增联赛" @click="onAdd"></uni-tag>
     </div>
-    <uni-card title="榕超联赛" extra="大体中心" mode="style" is-shadow class="stadium-card">
-      <text>(11人制) 榕超联赛由4个组别, 共42个球队组成. </text>
-    </uni-card>
-    <uni-card title="FAFA联赛" extra="奥体外场" mode="style" is-shadow class="stadium-card">
-      <text>(11人制) 榕超联赛由2个组别, 共20个球队组成. </text>
-    </uni-card>
-    <uni-card title="仓丁联赛" extra="金丰体育中心" mode="style" is-shadow class="stadium-card">
-      <text>(7人制) 仓丁联赛由1个组别, 共9个球队组成. </text>
+    <uni-card
+      v-for="(item, i) in list"
+      :key="i"
+      :title="item.leagueName"
+      :extra="item.leagueArea"
+      mode="style"
+      is-shadow
+      class="stadium-card"
+    >
+      <text>{{ item.leagueNote }}</text>
     </uni-card>
   </view>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { IObj } from '@/types/common'
+import { onMounted, ref } from 'vue'
+let list = ref<IObj>({})
+onMounted(async () => {
+  const league = uniCloud.importObject('league')
+  const res = await league.list()
+  list.value = res.data
+})
+
+const onAdd = () => {
+  uni.navigateTo({ url: `/pages/matchList/leagueForm` })
+}
+</script>
 
 <style lang="scss" scoped></style>

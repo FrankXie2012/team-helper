@@ -57,7 +57,7 @@
       </uni-grid-item>
     </uni-grid>
     <div class="total-title">
-      <uni-icons type="circle-filled" size="20" color="#1296db"></uni-icons>
+      <uni-icons type="circle-filled" size="20" color="#2979ff"></uni-icons>
       比赛计划
     </div>
     <uni-card title="基础卡片" extra="额外信息">
@@ -67,9 +67,14 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue'
 const onClickGrid = (val: string) => {
   uni.navigateTo({ url: `/pages/${val}/index` })
 }
+onMounted(async () => {
+  // const team = uniCloud.importObject('team')
+  // const res = await team.add()
+})
 </script>
 
 <style lang="scss" scoped>
