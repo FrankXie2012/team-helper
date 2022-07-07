@@ -19,6 +19,11 @@
       "title": "球队说明",
       "bsonType": "string",
       "maxLength": 100
+    },
+    "teamArea": {
+      "title": "所属地区",
+      "bsonType": "string",
+      "maxLength": 20
     }
   }
 }

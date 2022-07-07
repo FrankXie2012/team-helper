@@ -20,6 +20,11 @@
       "bsonType": "string",
       "maxLength": 20
     },
+    "stadiumLocation": {
+      "title": "球场定位",
+      "bsonType": "string",
+      "maxLength": 20
+    },
     "stadiumGrass": {
       "title": "球场草皮",
       "bsonType": "string",

@@ -215,6 +215,19 @@
 }
 
 // 公用组件样式
+.content {
+  background-color: #efefef;
+  height: 100vh;
+  overflow: auto;
+}
+.blue-btn {
+  background: linear-gradient(to right, #1989fa, #8dc6ff);
+  color: #fff;
+}
+.red-btn {
+  background: linear-gradient(to right, #ff6034, #ee0a24);
+  color: #fff;
+}
 .total-title {
   color: $base-color;
   font-size: 20px;
@@ -236,11 +249,24 @@
 }
 .stadium-card {
   .uni-card {
-    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+    background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)),
       url('https://images.pexels.com/photos/61135/pexels-photo-61135.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
     background-size: 100% 100%;
   }
   text {
     color: #333;
+  }
+}
+.card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 16px;
+  color: $uni-color-primary;
+  margin: 10px 0;
+  .uni-icons {
+    font-size: 20px !important;
+    color: $uni-color-primary;
+    vertical-align: middle;
   }
 }

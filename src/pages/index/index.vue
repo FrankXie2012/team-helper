@@ -2,21 +2,21 @@
   <view class="content">
     <uni-grid :column="3" :show-border="false" square>
       <uni-grid-item>
-        <div class="grid-box" @click="onClickGrid('joinPost')">
-          <uni-icons type="personadd" size="50"></uni-icons>
-          <h3>参与接龙</h3>
+        <div class="grid-box" @click="onClickGrid('league')">
+          <uni-icons type="flag" size="50"></uni-icons>
+          <h3>联赛管理</h3>
         </div>
       </uni-grid-item>
       <uni-grid-item>
-        <div class="grid-box" @click="onClickGrid('myTeams')">
+        <div class="grid-box" @click="onClickGrid('team')">
           <uni-icons type="star" size="50"></uni-icons>
           <h3>我的球队</h3>
         </div>
       </uni-grid-item>
       <uni-grid-item>
-        <div class="grid-box" @click="onClickGrid('matchList')">
-          <uni-icons type="flag" size="50"></uni-icons>
-          <h3>赛程赛况</h3>
+        <div class="grid-box" @click="onClickGrid('joinPost')">
+          <uni-icons type="personadd" size="50"></uni-icons>
+          <h3>参与接龙</h3>
         </div>
       </uni-grid-item>
       <uni-grid-item>
@@ -68,12 +68,12 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import { wechatLogin } from '@/utils/common'
 const onClickGrid = (val: string) => {
   uni.navigateTo({ url: `/pages/${val}/index` })
 }
 onMounted(async () => {
-  // const team = uniCloud.importObject('team')
-  // const res = await team.add()
+  wechatLogin()
 })
 </script>
 

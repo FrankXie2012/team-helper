@@ -1,0 +1,7 @@
+{
+  "name": "stadium",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

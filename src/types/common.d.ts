@@ -4,3 +4,10 @@ export declare interface IObj<T = any> {
 }
 
 export declare type Nullable<T> = T | null
+
+// 云对象返回数据格式
+export declare interface IResponse {
+  errCode: 0 | 500
+  errMsg: string
+  data?: IObj
+}

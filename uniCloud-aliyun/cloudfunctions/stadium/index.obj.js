@@ -1,7 +1,7 @@
 const db = uniCloud.database()
 module.exports = {
   list: async () => {
-    const collection = await db.collection('t_league').get()
+    const collection = await db.collection('t_stadium').get()
     return {
       errCode: 0,
       errMsg: '获取成功',
@@ -15,7 +15,7 @@ module.exports = {
         errMsg: '操作失败',
       }
     }
-    const res = await db.collection('t_league').add(data)
+    const res = await db.collection('t_stadium').add(data)
     return {
       errCode: 0,
       errMsg: '新增成功',
@@ -31,7 +31,7 @@ module.exports = {
     }
     const param = Object.assign({}, data)
     delete param._id
-    const res = await db.collection('t_league').doc(data._id).update(param)
+    const res = await db.collection('t_stadium').doc(data._id).update(param)
     return {
       errCode: 0,
       errMsg: '修改成功',
@@ -45,7 +45,7 @@ module.exports = {
         errMsg: '操作失败',
       }
     }
-    const res = await db.collection('t_league').doc(id).remove()
+    const res = await db.collection('t_stadium').doc(id).remove()
     return {
       errCode: 0,
       errMsg: '删除成功',

@@ -46,6 +46,7 @@ const getCover = (type: string) => {
     多云: 'cloudy-card',
     阴: 'moody-card',
     小雨: 'rainy-card',
+    中雨: 'rainy-card',
     大雨: 'rainy-card',
   }
   return covers[type]

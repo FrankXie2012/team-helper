@@ -25,21 +25,33 @@
       }
     },
     {
+      "path": "pages/league/index",
+      "style": {
+        "navigationBarTitleText": "联赛管理"
+      }
+    },
+    {
+      "path": "pages/league/leagueForm",
+      "style": {
+        "navigationBarTitleText": "编辑联赛"
+      }
+    },
+    {
+      "path": "pages/team/index",
+      "style": {
+        "navigationBarTitleText": "球队管理"
+      }
+    },
+    {
+      "path": "pages/team/teamForm",
+      "style": {
+        "navigationBarTitleText": "编辑球队"
+      }
+    },
+    {
       "path": "pages/joinPost/index",
       "style": {
         "navigationBarTitleText": "参与接龙"
-      }
-    },
-    {
-      "path": "pages/matchList/index",
-      "style": {
-        "navigationBarTitleText": "赛程赛况"
-      }
-    },
-    {
-      "path": "pages/matchList/leagueForm",
-      "style": {
-        "navigationBarTitleText": "编辑联赛"
       }
     },
     {
@@ -58,6 +70,12 @@
       "path": "pages/stadiumSum/index",
       "style": {
         "navigationBarTitleText": "球场汇总"
+      }
+    },
+    {
+      "path": "pages/stadiumSum/stadiumForm",
+      "style": {
+        "navigationBarTitleText": "编辑球场"
       }
     }
   ],

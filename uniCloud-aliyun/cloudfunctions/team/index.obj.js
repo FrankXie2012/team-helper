@@ -1,17 +1,55 @@
+const db = uniCloud.database()
 module.exports = {
-  add: function (title = '', content = '') {
-    title = title.trim()
-    content = content.trim()
-    if (!title || !content) {
-      return {
-        errCode: 'INVALID_TODO',
-        errMsg: 'TODO标题或内容不可为空',
-      }
-    }
-    // ...其他逻辑，如操作todo数据表添加数据
+  list: async () => {
+    const collection = await db.collection('t_team').get()
     return {
       errCode: 0,
-      errMsg: '创建成功',
+      errMsg: '获取成功',
+      ...collection,
+    }
+  },
+  add: async (data = {}) => {
+    if (!data) {
+      return {
+        errCode: 500,
+        errMsg: '操作失败',
+      }
+    }
+    const res = await db.collection('t_team').add(data)
+    return {
+      errCode: 0,
+      errMsg: '新增成功',
+      data: res,
+    }
+  },
+  update: async (data = {}) => {
+    if (!data || !data._id) {
+      return {
+        errCode: 500,
+        errMsg: '操作失败',
+      }
+    }
+    const param = Object.assign({}, data)
+    delete param._id
+    const res = await db.collection('t_team').doc(data._id).update(param)
+    return {
+      errCode: 0,
+      errMsg: '修改成功',
+      data: res,
+    }
+  },
+  delete: async (id = '') => {
+    if (!id) {
+      return {
+        errCode: 500,
+        errMsg: '操作失败',
+      }
+    }
+    const res = await db.collection('t_team').doc(id).remove()
+    return {
+      errCode: 0,
+      errMsg: '删除成功',
+      data: res,
     }
   },
 }
