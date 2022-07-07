@@ -12,9 +12,9 @@
           <uni-easyinput
             v-model="formData.stadiumGeo"
             type="text"
-            suffixIcon="map-pin-ellipse"
+            suffix-icon="map-pin-ellipse"
             disabled
-            @iconClick="getLocation"
+            @icon-click="getLocation"
           />
         </uni-forms-item>
         <uni-forms-item label="球场图片" name="stadiumPic">
