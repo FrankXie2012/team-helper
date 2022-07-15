@@ -24,6 +24,11 @@
       "title": "所属地区",
       "bsonType": "string",
       "maxLength": 20
+    },
+    "createdBy": {
+      "title": "创建人_id",
+      "bsonType": "string",
+      "maxLength": 20
     }
   }
 }

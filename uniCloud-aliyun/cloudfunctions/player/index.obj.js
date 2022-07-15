@@ -26,6 +26,21 @@ module.exports = {
       ...collection,
     }
   },
+  getOne: async (data) => {
+    const user = await db.collection('t_player').where(data).get()
+    if (!user) {
+      return {
+        errCode: 500,
+        errMsg: '查找失败',
+      }
+    } else {
+      return {
+        errCode: 0,
+        errMsg: '查找成功',
+        ...user,
+      }
+    }
+  },
   add: async (data = {}) => {
     if (!data) {
       return {

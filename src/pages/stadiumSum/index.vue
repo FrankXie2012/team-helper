@@ -7,24 +7,31 @@
       </div>
       <button class="blue-btn ma-0" @click="onAdd">新增球场</button>
     </div>
-    <uni-card
-      v-for="(item, i) in list"
-      :key="i"
-      :cover="item.stadiumPic"
-      :title="item.stadiumName"
-      :extra="getGrass(item.stadiumGrass)"
-      mode="style"
-      is-shadow
-    >
-      <text>{{ item.stadiumGeo }}</text>
-      <template #actions>
-        <view class="card-actions">
-          <view @click="onNavigate(item)"> <uni-icons type="navigate" color="#2979ff"></uni-icons> 导航 </view>
-          <view @click="onEdit(item)"> <uni-icons type="compose" color="#2979ff"></uni-icons> 修改 </view>
-          <view class="c-red" @click="onDelete(item)"> <uni-icons type="trash" color="#f38181"></uni-icons> 删除 </view>
-        </view>
-      </template>
-    </uni-card>
+    <div v-if="list.length > 0">
+      <uni-card
+        v-for="(item, i) in list"
+        :key="i"
+        :cover="item.stadiumPic"
+        :title="item.stadiumName"
+        :extra="getGrass(item.stadiumGrass)"
+        mode="style"
+        is-shadow
+      >
+        <text>{{ item.stadiumGeo }}</text>
+        <template #actions>
+          <view class="card-actions">
+            <view @click="onNavigate(item)"> <uni-icons type="navigate" color="#2979ff"></uni-icons> 导航 </view>
+            <view v-if="checkManage(item.createdBy)" @click="onEdit(item)">
+              <uni-icons type="compose" color="#2979ff"></uni-icons> 修改
+            </view>
+            <view v-if="checkManage(item.createdBy)" class="c-red" @click="onDelete(item)">
+              <uni-icons type="trash" color="#f38181"></uni-icons> 删除
+            </view>
+          </view>
+        </template>
+      </uni-card>
+    </div>
+    <div v-else class="no-data"></div>
   </view>
 </template>
 
@@ -40,6 +47,11 @@ const initData = async () => {
 onMounted(async () => {
   initData()
 })
+
+const userInfo = uni.getStorageSync('userInfo')
+const checkManage = (val) => {
+  return userInfo._id === val
+}
 
 const getGrass = (val) => {
   const list = {

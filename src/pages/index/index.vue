@@ -1,5 +1,15 @@
 <template>
   <view class="content">
+    <uni-swiper-dot>
+      <swiper class="swiper-box">
+        <swiper-item>
+          <img src="https://cdn.pixabay.com/photo/2016/03/27/20/57/people-1284253_960_720.jpg" />
+        </swiper-item>
+        <swiper-item>
+          <img src="https://cdn.pixabay.com/photo/2015/09/09/17/18/stadium-931975_960_720.jpg" />
+        </swiper-item>
+      </swiper>
+    </uni-swiper-dot>
     <uni-grid :column="3" :show-border="false" square>
       <uni-grid-item>
         <div class="grid-box" @click="onClickGrid('league')">
@@ -70,11 +80,10 @@
 import { onMounted } from 'vue'
 import { wechatLogin } from '@/utils/common'
 const onClickGrid = (val: string) => {
+  wechatLogin()
   uni.navigateTo({ url: `/pages/${val}/index` })
 }
-onMounted(async () => {
-  wechatLogin()
-})
+onMounted(async () => {})
 </script>
 
 <style lang="scss" scoped>

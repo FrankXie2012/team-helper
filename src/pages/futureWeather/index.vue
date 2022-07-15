@@ -4,29 +4,32 @@
       <uni-icons type="circle-filled" size="20" color="#2979ff"></uni-icons>
       我的位置
     </div>
-    <uni-card class="total-card" title="当前位置" :extra="weather.city">
+    <uni-card title="当前位置" :extra="weather.city">
       {{ currentGeo.formatted_address }}
     </uni-card>
     <div class="total-title">
       <uni-icons type="circle-filled" size="20" color="#2979ff"></uni-icons>
       天气预报
     </div>
-    <uni-card v-for="(item, i) in weather.casts" :key="i" mode="style" is-shadow :class="getCover(item.dayweather)">
-      <div class="flex-between mb-10">
-        <uni-tag :text="item.date" type="primary"></uni-tag>
-        <view>更新日期: {{ weather.reporttime }}</view>
-      </div>
-      <uni-row>
-        <uni-col :span="12">最高气温: {{ item.daytemp }}</uni-col>
-        <uni-col :span="12">最低气温: {{ item.nighttemp }}</uni-col>
-        <uni-col :span="12">白天天气: {{ item.dayweather }}</uni-col>
-        <uni-col :span="12">晚上天气: {{ item.nightweather }}</uni-col>
-        <uni-col :span="12">白天风向: {{ item.daywind }}</uni-col>
-        <uni-col :span="12">晚上风向: {{ item.nightwind }}</uni-col>
-        <uni-col :span="12">白天风力: {{ item.daypower }}</uni-col>
-        <uni-col :span="12">晚上风力: {{ item.nightpower }}</uni-col>
-      </uni-row>
-    </uni-card>
+    <div v-if="weather.casts && weather.casts.length > 0">
+      <uni-card v-for="(item, i) in weather.casts" :key="i" mode="style" is-shadow :class="getCover(item.dayweather)">
+        <div class="flex-between mb-10">
+          <uni-tag :text="item.date" type="primary"></uni-tag>
+          <view>更新日期: {{ weather.reporttime }}</view>
+        </div>
+        <uni-row>
+          <uni-col :span="12">最高气温: {{ item.daytemp }}</uni-col>
+          <uni-col :span="12">最低气温: {{ item.nighttemp }}</uni-col>
+          <uni-col :span="12">白天天气: {{ item.dayweather }}</uni-col>
+          <uni-col :span="12">晚上天气: {{ item.nightweather }}</uni-col>
+          <uni-col :span="12">白天风向: {{ item.daywind }}</uni-col>
+          <uni-col :span="12">晚上风向: {{ item.nightwind }}</uni-col>
+          <uni-col :span="12">白天风力: {{ item.daypower }}</uni-col>
+          <uni-col :span="12">晚上风力: {{ item.nightpower }}</uni-col>
+        </uni-row>
+      </uni-card>
+    </div>
+    <div v-else class="no-data"></div>
   </view>
 </template>
 

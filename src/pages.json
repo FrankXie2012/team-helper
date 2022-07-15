@@ -49,6 +49,18 @@
       }
     },
     {
+      "path": "pages/player/index",
+      "style": {
+        "navigationBarTitleText": "球员管理"
+      }
+    },
+    {
+      "path": "pages/player/playerForm",
+      "style": {
+        "navigationBarTitleText": "编辑球员"
+      }
+    },
+    {
       "path": "pages/joinPost/index",
       "style": {
         "navigationBarTitleText": "参与接龙"

@@ -32,6 +32,11 @@
         { "text": "人工草", "value": "artificial" },
         { "text": "天然草", "value": "natural" }
       ]
+    },
+    "createdBy": {
+      "title": "创建人_id",
+      "bsonType": "string",
+      "maxLength": 20
     }
   }
 }

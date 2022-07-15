@@ -44,12 +44,14 @@ interface IForm {
   teamNote: string
   teamArea: string
   teamLogo: string
+  createdBy: string
 }
 const initData = {
   teamName: '',
   teamNote: '',
   teamArea: '',
   teamLogo: '',
+  createdBy: '',
 }
 let formTitle = ref<string>('')
 let logoList = ref<IObj[]>([])
@@ -127,6 +129,7 @@ const onSubmit = async () => {
     .validate()
     .then(async () => {
       let res: IResponse
+      formData.value.createdBy = uni.getStorageSync('userInfo')._id
       if (!formData.value._id) {
         res = await uniObject.add(formData.value)
       } else {

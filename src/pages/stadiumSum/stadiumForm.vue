@@ -49,6 +49,7 @@ interface IForm {
   stadiumGeo: string
   stadiumLocation: string
   stadiumPic: string
+  createdBy: string
 }
 const initData = {
   stadiumName: '',
@@ -56,6 +57,7 @@ const initData = {
   stadiumGeo: '',
   stadiumLocation: '',
   stadiumPic: '',
+  createdBy: '',
 }
 const grassList = [
   { text: '人工草', value: 'artificial' },
@@ -136,6 +138,7 @@ const onSubmit = async () => {
     .validate()
     .then(async () => {
       let res: IResponse
+      formData.value.createdBy = uni.getStorageSync('userInfo')._id
       if (!formData.value._id) {
         res = await uniObject.add(formData.value)
       } else {

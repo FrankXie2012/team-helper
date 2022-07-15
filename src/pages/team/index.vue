@@ -7,48 +7,60 @@
       </div>
       <button class="blue-btn ma-0" @click="onAdd">新增球队</button>
     </div>
-    <uni-card
-      v-for="(item, i) in list"
-      :key="i"
-      :thumbnail="item.teamLogo"
-      :title="item.teamName"
-      :extra="item.teamArea"
-      mode="style"
-      is-shadow
-    >
-      <text>{{ item.teamNote }}</text>
-      <template #actions>
-        <view class="card-actions">
-          <view> <uni-icons type="eye" color="#2979ff"></uni-icons> 查看 </view>
-          <view @click="onEdit(item)"> <uni-icons type="compose" color="#2979ff"></uni-icons> 修改 </view>
-          <view class="c-red" @click="onDelete(item)"> <uni-icons type="trash" color="#f38181"></uni-icons> 删除 </view>
-          <view class="c-red" @click="onDelete(item)"> <uni-icons type="minus" color="#f38181"></uni-icons> 退出 </view>
-        </view>
-      </template>
-    </uni-card>
+    <div v-if="list.length > 0">
+      <uni-card
+        v-for="(item, i) in list"
+        :key="i"
+        :thumbnail="item.teamLogo"
+        :title="item.teamName"
+        :extra="item.teamArea"
+        mode="style"
+        is-shadow
+      >
+        <text>{{ item.teamNote }}</text>
+        <template #actions>
+          <view class="card-actions">
+            <view> <uni-icons type="eye" color="#2979ff"></uni-icons> 查看 </view>
+            <view v-if="checkManage(item.createdBy)" @click="onEdit(item)">
+              <uni-icons type="compose" color="#2979ff"></uni-icons> 修改
+            </view>
+            <view v-if="checkManage(item.createdBy)" class="c-red" @click="onDelete(item)">
+              <uni-icons type="trash" color="#f38181"></uni-icons> 删除
+            </view>
+            <view class="c-red" @click="onDelete(item)">
+              <uni-icons type="minus" color="#f38181"></uni-icons> 退出
+            </view>
+          </view>
+        </template>
+      </uni-card>
+    </div>
+    <div v-else class="no-data"></div>
     <div class="total-title flex-between">
       <div>
         <uni-icons type="circle-filled" size="20" color="#2979ff"></uni-icons>
         其他球队
       </div>
     </div>
-    <uni-card
-      v-for="(item, i) in list"
-      :key="i"
-      :thumbnail="item.teamLogo"
-      :title="item.teamName"
-      :extra="item.teamArea"
-      mode="style"
-      is-shadow
-    >
-      <text>{{ item.teamNote }}</text>
-      <template #actions>
-        <view class="card-actions">
-          <view> <uni-icons type="eye" color="#2979ff"></uni-icons> 查看 </view>
-          <view @click="onEdit(item)"> <uni-icons type="plus" color="#2979ff"></uni-icons> 加入 </view>
-        </view>
-      </template>
-    </uni-card>
+    <div v-if="list.length > 0">
+      <uni-card
+        v-for="(item, i) in list"
+        :key="i"
+        :thumbnail="item.teamLogo"
+        :title="item.teamName"
+        :extra="item.teamArea"
+        mode="style"
+        is-shadow
+      >
+        <text>{{ item.teamNote }}</text>
+        <template #actions>
+          <view class="card-actions">
+            <view> <uni-icons type="eye" color="#2979ff"></uni-icons> 查看 </view>
+            <view @click="onEdit(item)"> <uni-icons type="plus" color="#2979ff"></uni-icons> 加入 </view>
+          </view>
+        </template>
+      </uni-card>
+    </div>
+    <div v-else class="no-data"></div>
   </view>
 </template>
 
@@ -64,6 +76,11 @@ const initData = async () => {
 onMounted(async () => {
   initData()
 })
+
+const userInfo = uni.getStorageSync('userInfo')
+const checkManage = (val) => {
+  return userInfo._id === val
+}
 
 const onAdd = () => {
   uni.navigateTo({ url: `/pages/team/teamForm` })
