@@ -1,0 +1,25 @@
+{
+  "bsonType": "object",
+  "required": [],
+  "permission": {
+    "read": false,
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "leagueId": {
+      "title": "联赛ID",
+      "bsonType": "string",
+      "maxLength": 20
+    },
+    "teamId": {
+      "title": "球队ID",
+      "bsonType": "string",
+      "maxLength": 20
+    }
+  }
+}

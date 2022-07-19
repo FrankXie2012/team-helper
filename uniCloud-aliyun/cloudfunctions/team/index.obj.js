@@ -1,4 +1,5 @@
 const db = uniCloud.database()
+const dbCmd = db.command
 module.exports = {
   list: async () => {
     const collection = await db.collection('t_team').get()
@@ -50,6 +51,40 @@ module.exports = {
       errCode: 0,
       errMsg: '删除成功',
       data: res,
+    }
+  },
+  joinLeague: async (data = {}) => {
+    if (!data || !data.teamId || (data.list && data.list.length < 1)) {
+      return {
+        errCode: 500,
+        errMsg: '操作失败',
+      }
+    }
+    for (const item of data.list) {
+      await db.collection('t_league_team').add({ teamId: data.teamId, leagueId: item })
+    }
+    return {
+      errCode: 0,
+      errMsg: '新增成功',
+    }
+  },
+  quitLeague: async (data = {}) => {
+    if (!data || !data.teamId || (data.list && data.list.length < 1)) {
+      return {
+        errCode: 500,
+        errMsg: '操作失败',
+      }
+    }
+    await db
+      .collection('t_league_team')
+      .where({
+        teamId: data.teamId,
+        leagueId: dbCmd.in(data.list),
+      })
+      .remove()
+    return {
+      errCode: 0,
+      errMsg: '新增成功',
     }
   },
 }

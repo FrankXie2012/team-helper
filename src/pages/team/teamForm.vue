@@ -8,6 +8,15 @@
         <uni-forms-item label="球队说明" name="teamNote">
           <uni-easyinput v-model="formData.teamNote" type="text" maxlength="100" />
         </uni-forms-item>
+        <uni-forms-item required label="所属联赛" name="leagueId">
+          <uni-data-checkbox
+            v-model="formData.leagueIds"
+            multiple
+            min="1"
+            mode="list"
+            :localdata="leagueList"
+          ></uni-data-checkbox>
+        </uni-forms-item>
         <uni-forms-item required label="所属地区" name="teamArea">
           <uni-easyinput v-model="formData.teamArea" type="text" disabled />
         </uni-forms-item>
@@ -38,6 +47,8 @@ import config from '../../config'
 
 // 初始化数据
 const uniObject = uniCloud.importObject('team')
+const league = uniCloud.importObject('league')
+let joinedLeagues: string[] = []
 interface IForm {
   _id?: string
   teamName: string
@@ -45,6 +56,7 @@ interface IForm {
   teamArea: string
   teamLogo: string
   createdBy: string
+  leagueIds: string[]
 }
 const initData = {
   teamName: '',
@@ -52,6 +64,7 @@ const initData = {
   teamArea: '',
   teamLogo: '',
   createdBy: '',
+  leagueIds: [],
 }
 let formTitle = ref<string>('')
 let logoList = ref<IObj[]>([])
@@ -60,6 +73,7 @@ let formData = ref<IForm>(initData)
 const rules = {
   teamName: required,
   teamArea: required,
+  leagueIds: required,
 }
 const initForm = (data?: IForm) => {
   if (!data) {
@@ -75,6 +89,7 @@ const initForm = (data?: IForm) => {
         url: data.teamLogo,
       },
     ]
+    joinedLeagues = data.leagueIds
   }
 }
 
@@ -86,6 +101,7 @@ onLoad((option) => {
     initForm()
   }
   getLocation()
+  getLeagues()
 })
 
 // 获取当前位置
@@ -123,6 +139,18 @@ const onFail = (val) => {
   })
 }
 
+// 获取联赛数据
+let leagueList = ref<IObj>({})
+const getLeagues = async () => {
+  const res = await league.list()
+  leagueList.value = res.data.map((v) => {
+    return {
+      text: v.leagueName,
+      value: v._id,
+    }
+  })
+}
+
 // 提交表单
 const onSubmit = async () => {
   form.value
@@ -136,6 +164,8 @@ const onSubmit = async () => {
         res = await uniObject.update(formData.value)
       }
       if (res.errCode === 0) {
+        const teamId = (res.data && res.data.id) || formData.value._id
+        await saveLeagueTeam(teamId)
         uni.redirectTo({ url: `/pages/team/index` })
       } else {
         uni.showToast({ title: '请求失败', icon: 'none' })
@@ -144,6 +174,41 @@ const onSubmit = async () => {
     .catch((err) => {
       console.log('表单错误信息：', err)
     })
+}
+
+// 保存联赛球队关系
+const saveLeagueTeam = (teamId) => {
+  return new Promise((resolve, reject) => {
+    const addList = formData.value.leagueIds.filter((v) => !joinedLeagues.includes(v))
+    if (addList.length > 0) {
+      uniObject
+        .joinLeague({
+          teamId,
+          list: addList,
+        })
+        .then((res: IResponse) => {
+          if (res.errCode !== 0) {
+            uni.showToast({ title: '请求失败', icon: 'none' })
+            reject()
+          }
+        })
+    }
+    const delList = joinedLeagues.filter((v) => !formData.value.leagueIds.includes(v))
+    if (delList.length > 0) {
+      uniObject
+        .quitLeague({
+          teamId,
+          list: delList,
+        })
+        .then((res: IResponse) => {
+          if (res.errCode !== 0) {
+            uni.showToast({ title: '请求失败', icon: 'none' })
+            reject()
+          }
+        })
+    }
+    resolve(null)
+  })
 }
 </script>
 
