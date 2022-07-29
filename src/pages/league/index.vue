@@ -21,7 +21,7 @@
         <text>{{ item.leagueNote }}</text>
         <template #actions>
           <view class="card-actions">
-            <view> <uni-icons type="eye" color="#2979ff"></uni-icons> 查看 </view>
+            <view @click="onView(item)"> <uni-icons type="eye" color="#2979ff"></uni-icons> 查看 </view>
             <view v-if="checkManage(item.createdBy)" @click="onEdit(item)">
               <uni-icons type="compose" color="#2979ff"></uni-icons> 修改
             </view>
@@ -54,6 +54,9 @@ const checkManage = (val) => {
   return userInfo._id === val
 }
 
+const onView = (val) => {
+  uni.navigateTo({ url: `/pages/league/leagueDetail?data=${JSON.stringify(val)}` })
+}
 const onAdd = () => {
   uni.navigateTo({ url: `/pages/league/leagueForm` })
 }

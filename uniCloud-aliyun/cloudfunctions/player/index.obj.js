@@ -79,10 +79,75 @@ module.exports = {
       }
     }
     const res = await db.collection('t_player').doc(id).remove()
+    await db
+      .collection('t_league_team')
+      .where({
+        playerId: id,
+      })
+      .remove()
     return {
       errCode: 0,
       errMsg: '删除成功',
       data: res,
+    }
+  },
+  // 球员申请加入球队
+  joinTeam: async (data = {}) => {
+    if (!data || !data.teamId || !data.playerId) {
+      return {
+        errCode: 500,
+        errMsg: '操作失败',
+      }
+    }
+    await db.collection('t_team_player').add({ teamId: data.teamId, playerId: data.playerId, auditStatus: false })
+    return {
+      errCode: 0,
+      errMsg: '申请成功',
+    }
+  },
+  // 审核通过球员加入
+  passJoin: async (data = {}) => {
+    if (!data || !data.teamId || !data.playerId) {
+      return {
+        errCode: 500,
+        errMsg: '操作失败',
+      }
+    }
+    const param = {
+      teamId: data.teamId,
+      playerId: data.playerId,
+    }
+    await db
+      .collection('t_team_player')
+      .where(param)
+      .update(
+        Object.assign({}, param, {
+          auditStatus: true,
+        })
+      )
+    return {
+      errCode: 0,
+      errMsg: '审核成功',
+    }
+  },
+  // 球员退出球队
+  quitTeam: async (data = {}) => {
+    if (!data || !data.teamId || !data.playerId) {
+      return {
+        errCode: 500,
+        errMsg: '操作失败',
+      }
+    }
+    await db
+      .collection('t_team_player')
+      .where({
+        teamId: data.teamId,
+        playerId: data.playerId,
+      })
+      .remove()
+    return {
+      errCode: 0,
+      errMsg: '退出成功',
     }
   },
 }

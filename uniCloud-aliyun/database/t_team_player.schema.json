@@ -20,6 +20,11 @@
       "title": "球员ID",
       "bsonType": "string",
       "maxLength": 20
+    },
+    "auditStatus": {
+      "title": "审核状态",
+      "bsonType": "boolean",
+      "description": "true: 正式加入球队, false: 已申请加入，未审核"
     }
   }
 }

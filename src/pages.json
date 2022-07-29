@@ -25,6 +25,12 @@
       }
     },
     {
+      "path": "pages/joinPost/index",
+      "style": {
+        "navigationBarTitleText": "参与接龙"
+      }
+    },
+    {
       "path": "pages/league/index",
       "style": {
         "navigationBarTitleText": "联赛管理"
@@ -34,6 +40,12 @@
       "path": "pages/league/leagueForm",
       "style": {
         "navigationBarTitleText": "编辑联赛"
+      }
+    },
+    {
+      "path": "pages/league/leagueDetail",
+      "style": {
+        "navigationBarTitleText": "联赛详情"
       }
     },
     {
@@ -49,21 +61,15 @@
       }
     },
     {
-      "path": "pages/player/index",
+      "path": "pages/team/teamDetail",
       "style": {
-        "navigationBarTitleText": "球员管理"
+        "navigationBarTitleText": "球队详情"
       }
     },
     {
       "path": "pages/player/playerForm",
       "style": {
         "navigationBarTitleText": "编辑球员"
-      }
-    },
-    {
-      "path": "pages/joinPost/index",
-      "style": {
-        "navigationBarTitleText": "参与接龙"
       }
     },
     {
